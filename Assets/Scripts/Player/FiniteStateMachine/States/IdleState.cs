@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using Interfaces;
 
 namespace Player.FiniteStateMachine.States
 {
@@ -16,7 +16,7 @@ namespace Player.FiniteStateMachine.States
             //search for nearby enemies
             //if there are any, set shooting state
             //else set running state
-            if(_player.joystick.GetJoystickDirection() != Vector2.zero)
+            if(_player.joystick.IsTouching())
                 _player.SetRunningState();
         }
 

@@ -17,8 +17,8 @@ namespace General
         private void LateUpdate()
         {
            //follow player only on z axis
-           var desiredPosition = player.position + offset;
-           var position = transform.position;
+           Vector3 desiredPosition = player.position + offset;
+           Vector3 position = transform.position;
            var smoothedPosition = Vector3.Lerp(position, desiredPosition, smoothSpeed);
            position = new Vector3(position.x, position.y, smoothedPosition.z);
            transform.position = position;

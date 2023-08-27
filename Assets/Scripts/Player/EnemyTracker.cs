@@ -1,22 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player
 {
     public class EnemyTracker : MonoBehaviour
     {
-        [SerializeField] private readonly List<GameObject> _enemies = new List<GameObject>();
-        
-        public void AddEnemy(GameObject enemy)
+        [SerializeField] private List<GameObject> enemies = new List<GameObject>();
+
+        private void Start()
         {
-            _enemies.Add(enemy);
+            Init();
+        }
+        private void Init()
+        {
+            enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         }
         
         public Transform GetNearbyEnemy(Vector3 playerPosition)
         {
             Transform closestEnemy = null;
             float closestDistance = Mathf.Infinity;
-            foreach (var enemy in _enemies)
+            foreach (var enemy in enemies)
             {
                 if (enemy == null)
                     continue;
