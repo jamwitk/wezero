@@ -1,5 +1,4 @@
-﻿using Interfaces;
-using System;
+﻿using System;
 using Player.FiniteStateMachine.States;
 using UnityEngine;
 using Voodoo.Visual.UI;
@@ -64,5 +63,12 @@ namespace Player.FiniteStateMachine
         }
 
         #endregion
+    }
+
+    public interface IPlayerState
+    {
+        void Enter(PlayerFiniteStateMachine playerFiniteStateMachine);
+        void Update();
+        void Exit();
     }
 }

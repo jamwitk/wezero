@@ -1,5 +1,4 @@
-﻿using Interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Player.FiniteStateMachine.States
 {
@@ -14,7 +13,7 @@ namespace Player.FiniteStateMachine.States
 
         public void Update()
         {
-            if (!_player.joystick.IsTouching())
+            if (_player.joystick.GetJoystickDirection() == Vector2.zero)
             {
                 _player.SetIdleState();
                 return;                

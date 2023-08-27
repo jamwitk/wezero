@@ -1,12 +1,11 @@
-﻿using Interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Player.FiniteStateMachine.States
 {
     public class ShootingState : IPlayerState
     {
         private PlayerFiniteStateMachine _player;
-        private Transform _target;
+        private Transform                _target;
         public void Enter(PlayerFiniteStateMachine playerFiniteStateMachine)
         {
             _player = playerFiniteStateMachine;
@@ -24,10 +23,12 @@ namespace Player.FiniteStateMachine.States
                     return;
                 }
             }
-            _player.transform.LookAt(_target);
-            _player.transform.rotation = Quaternion.Euler(0, _player.transform.rotation.eulerAngles.y, 0);
-            //TODO: shoot
-
+            else
+            {
+                _player.transform.LookAt(_target);
+                _player.transform.rotation = Quaternion.Euler(0, _player.transform.rotation.eulerAngles.y, 0);
+                //TODO: shoot
+            }
         }
 
         public void Exit()
