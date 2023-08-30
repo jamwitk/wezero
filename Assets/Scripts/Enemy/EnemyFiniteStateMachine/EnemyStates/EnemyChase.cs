@@ -9,7 +9,7 @@ namespace Enemy.EnemyFiniteStateMachine.EnemyStates
         public void Enter(EnemyFiniteStateMachine enemyFiniteStateMachine)
         {
             _enemy = enemyFiniteStateMachine;
-            
+            _enemy.animator.SetTrigger(EnemyAnimationStrings.Run);
         }
         public void Update()
         {
@@ -32,9 +32,11 @@ namespace Enemy.EnemyFiniteStateMachine.EnemyStates
         {
             //use navmesh to move towards player
             _enemy.transform.position = Vector3.MoveTowards(_enemy.transform.position, _enemy.playerTransform.position, _enemy.GetMovementSpeed() * Time.deltaTime);
+            _enemy.transform.LookAt(_enemy.playerTransform);
         }
         public void Exit()
         {
+            _enemy.animator.ResetTrigger(EnemyAnimationStrings.Run);
         }
     }
 }

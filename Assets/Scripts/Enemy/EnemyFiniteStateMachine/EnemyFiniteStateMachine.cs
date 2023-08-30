@@ -1,10 +1,19 @@
 ﻿using Enemy.EnemyFiniteStateMachine.EnemyStates;
+using General.Bullet;
 using Interfaces;
 using ScriptableObjects;
 using UnityEngine;
 
 namespace Enemy.EnemyFiniteStateMachine
 {
+    public static class EnemyAnimationStrings
+    {
+        public static readonly int Idle = Animator.StringToHash("IdleNormal");
+        public static readonly int Run = Animator.StringToHash("Run");
+        public static readonly int Attack = Animator.StringToHash("Attack");
+        public static readonly int SuperAttack = Animator.StringToHash("SuperAttack");
+        public static readonly int Death = Animator.StringToHash("Die");
+    }
     public class EnemyFiniteStateMachine : MonoBehaviour
     {
         [SerializeField] private EnemyIdle _enemyIdle = new EnemyIdle();
@@ -13,7 +22,9 @@ namespace Enemy.EnemyFiniteStateMachine
         [SerializeField] private EnemyDeath _enemyDeath = new EnemyDeath();
         private IEnemyState _currentState;
         [SerializeField] private EnemyStats enemyStats;
+        [SerializeField] private BulletStats bulletStats;
         
+        public Animator animator;
         public Transform playerTransform;
         public bool canShoot = true;
 
@@ -24,6 +35,7 @@ namespace Enemy.EnemyFiniteStateMachine
         public void Init(Transform player)
         {
             playerTransform = player;
+            animator = GetComponent<Animator>();
         }
         
         private void Update()
@@ -64,7 +76,7 @@ namespace Enemy.EnemyFiniteStateMachine
         {
             return enemyStats.Health;
         }
-        public int GetDamage()
+        public float GetDamage()
         {
             return enemyStats.AttackDamage;
         }
@@ -74,7 +86,12 @@ namespace Enemy.EnemyFiniteStateMachine
         }
         public GameObject GetBullet()
         {
-            return Instantiate(enemyStats.BulletPrefab);
+            var bullet = Instantiate(enemyStats.BulletPrefab);
+            if (bullet.TryGetComponent(out Bullet bulletComponent))
+            {
+                bulletComponent.Init(playerTransform,bulletStats);
+            }
+            return bullet;
         }
         public float GetChaseRange()
         {
@@ -95,9 +112,5 @@ namespace Enemy.EnemyFiniteStateMachine
 
         #endregion
 
-        public void SetAttackCooldown(float getAttackCooldown)
-        {
-            
-        }
     }
 }

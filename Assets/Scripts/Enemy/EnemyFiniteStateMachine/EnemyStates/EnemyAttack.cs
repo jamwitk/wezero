@@ -10,6 +10,7 @@ namespace Enemy.EnemyFiniteStateMachine.EnemyStates
         public void Enter(EnemyFiniteStateMachine enemyFiniteStateMachine)
         {
             _enemy = enemyFiniteStateMachine;
+            _enemy.animator.SetTrigger(EnemyAnimationStrings.Attack);
         }
         public void Update()
         {
@@ -31,7 +32,7 @@ namespace Enemy.EnemyFiniteStateMachine.EnemyStates
                 _enemy.canShoot = false;
                 _enemy.StartCoroutine(Shoot());
             }
-            
+            _enemy.transform.LookAt(_enemy.playerTransform);
         }
         private IEnumerator Shoot()
         {

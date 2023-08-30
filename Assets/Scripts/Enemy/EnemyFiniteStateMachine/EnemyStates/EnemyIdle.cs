@@ -9,6 +9,7 @@ namespace Enemy.EnemyFiniteStateMachine.EnemyStates
         public void Enter(EnemyFiniteStateMachine enemyFiniteStateMachine)
         {
             _enemy = enemyFiniteStateMachine;
+            _enemy.animator.SetTrigger(EnemyAnimationStrings.Idle);
         }
         public void Update()
         {
@@ -17,10 +18,12 @@ namespace Enemy.EnemyFiniteStateMachine.EnemyStates
                 _enemy.SetEnemyChase();
                 return;
             }
+            //patrol?
             
         }
         public void Exit()
         {
+            _enemy.animator.ResetTrigger(EnemyAnimationStrings.Idle);
         }
     }
 }

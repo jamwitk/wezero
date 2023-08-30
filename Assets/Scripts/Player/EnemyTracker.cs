@@ -25,7 +25,7 @@ namespace Player
             float closestDistance = Mathf.Infinity;
             foreach (var enemy in enemies)
             {
-                if (enemy == null)
+                if (!enemy)
                     continue;
                 var distance = Vector3.Distance(playerPosition, enemy.transform.position);
                 if (distance < closestDistance)
