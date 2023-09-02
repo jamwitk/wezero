@@ -18,7 +18,10 @@ namespace Player
         {
             enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         }
-        
+        public bool IsThereAnyEnemy()
+        {
+            return enemies.Count > 0;
+        }
         public Transform GetNearbyEnemy(Vector3 playerPosition)
         {
             Transform closestEnemy = null;

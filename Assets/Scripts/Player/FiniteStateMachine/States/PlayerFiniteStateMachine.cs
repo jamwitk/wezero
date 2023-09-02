@@ -1,6 +1,9 @@
-﻿using Interfaces;
+﻿using General.Bullet;
+using Interfaces;
 using System;
 using Player.FiniteStateMachine.States;
+using ScriptableObjects;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using Voodoo.Visual.UI;
 
@@ -18,12 +21,15 @@ namespace Player.FiniteStateMachine
         public Animator animator;
         public VisualJoystick joystick;
         public EnemyTracker enemyTracker;
+        public BulletStats bulletStats;
+        private Player _player;
         [Space(10)]
         [Header("Player Movement")]
         public float speed = 5f;
         
-        
-        
+        [Header("Player Shooting")]
+        public bool canShoot = true;
+        private Transform _enemyTarget;
         private IPlayerState _currentState;
         private readonly IdleState     _idleState     = new IdleState();
         private readonly RunningState  _runningState  = new RunningState();
@@ -31,6 +37,7 @@ namespace Player.FiniteStateMachine
         
         private void Start()
         {
+            _player = GetComponent<Player>();
             SetIdleState();
         }
 
@@ -38,7 +45,23 @@ namespace Player.FiniteStateMachine
         {
             _currentState?.Update();
         }
-
+        public void SetEnemyTarget(Transform enemy)
+        {
+            _enemyTarget = enemy;
+        }
+        public Transform GetEnemyTarget()
+        {
+            return _enemyTarget;
+        }
+        public GameObject GetBullet()
+        {
+            var bullet = Instantiate(_player.GetBulletPrefab(), transform.position, Quaternion.identity);
+            if (bullet.TryGetComponent(out Bullet component))
+            {
+                component.Init(_enemyTarget, bulletStats);
+            }
+            return bullet;
+        }
         private void SetState(IPlayerState state)
         {
             _currentState?.Exit();
@@ -64,5 +87,9 @@ namespace Player.FiniteStateMachine
         }
 
         #endregion
+        public float GetAttackCooldown()
+        {
+            return _player.stats.AttackCooldown;
+        }
     }
 }

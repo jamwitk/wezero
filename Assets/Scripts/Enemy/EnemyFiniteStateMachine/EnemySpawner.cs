@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Player;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Enemy.EnemyFiniteStateMachine
@@ -8,12 +10,11 @@ namespace Enemy.EnemyFiniteStateMachine
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private Transform playerTransform;
-
         private void Start()
         {
             InitEnemies();
         }
-        public void InitEnemies()
+        private void InitEnemies()
         {
             foreach (var spawnPoint in spawnPoints)
             {

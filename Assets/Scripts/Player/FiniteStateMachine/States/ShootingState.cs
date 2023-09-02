@@ -1,4 +1,5 @@
 ﻿using Interfaces;
+using System.Collections;
 using UnityEngine;
 
 namespace Player.FiniteStateMachine.States
@@ -7,10 +8,12 @@ namespace Player.FiniteStateMachine.States
     {
         private PlayerFiniteStateMachine _player;
         private Transform _target;
+        
         public void Enter(PlayerFiniteStateMachine playerFiniteStateMachine)
         {
             _player = playerFiniteStateMachine;
             playerFiniteStateMachine.animator.SetTrigger(AnimatorStrings.Idle);
+            _target = _player.GetEnemyTarget();
         }
 
         public void Update()
@@ -27,9 +30,24 @@ namespace Player.FiniteStateMachine.States
             _player.transform.LookAt(_target);
             _player.transform.rotation = Quaternion.Euler(0, _player.transform.rotation.eulerAngles.y, 0);
             //TODO: shoot
-
+            Attack();
         }
-
+        public void Attack()
+        {
+            var bullet = _player.GetBullet();
+            if (_player.canShoot)
+            {
+                _player.canShoot = false;
+                _player.StartCoroutine(Shoot());
+            }
+        }
+        private IEnumerator Shoot()
+        {
+            var bullet = _player.GetBullet();
+            bullet.SetActive(true);
+            yield return new WaitForSeconds(_player.GetAttackCooldown());
+            _player.canShoot = true;
+        }
         public void Exit()
         {
         }

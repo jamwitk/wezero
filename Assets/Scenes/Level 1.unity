@@ -200,7 +200,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -242,7 +242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &220431852
 Transform:
   m_ObjectHideFlags: 0
@@ -414,7 +414,9 @@ MonoBehaviour:
   animator: {fileID: 1351445804}
   joystick: {fileID: 1448417861}
   enemyTracker: {fileID: 670856570}
+  bulletStats: {fileID: 11400000, guid: d35b4e42275394f48aefe3c9b0e520b7, type: 2}
   speed: 5
+  canShoot: 1
 --- !u!114 &670856570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +430,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: []
+--- !u!114 &670856571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670856567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c77980a876d4400be0d94e40f9e43d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 631561d2961b2d146b3c95db4469f7cd, type: 2}
+--- !u!114 &670856572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670856567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8220b5edb7394893a4392897b68e26cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &694665113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -884,6 +911,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2614242618169837365, guid: 14470fd151bcc4742b90348391998ddb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 670856570}
+    - targetCorrespondingSourceObject: {fileID: 2614242618169837365, guid: 14470fd151bcc4742b90348391998ddb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 670856571}
+    - targetCorrespondingSourceObject: {fileID: 2614242618169837365, guid: 14470fd151bcc4742b90348391998ddb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 670856572}
     - targetCorrespondingSourceObject: {fileID: 7464798933339330805, guid: 14470fd151bcc4742b90348391998ddb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1136604417}

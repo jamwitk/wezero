@@ -13,22 +13,20 @@ namespace ScriptableObjects
         [SerializeField] private float attackSpeed;
         [SerializeField] private float criticalChance;
         [SerializeField] private float criticalDamage;
-        
+        [SerializeField] private float attackCooldown;
+        public GameObject bulletPrefab;
         public float Speed => speed;
+        public float AttackCooldown => attackCooldown;
         public float Health
         {
             get
             {
                 return health;
             }
-            set
-            {
-                health = Math.Max(value, 0);
-                OnHealthChanged?.Invoke(health);
-            }
         }
-        
-        public UnityAction<float> OnHealthChanged;
-        
+
+        public UnityEvent onDeath;
+        public UnityEvent onHit;
+
     }
 }

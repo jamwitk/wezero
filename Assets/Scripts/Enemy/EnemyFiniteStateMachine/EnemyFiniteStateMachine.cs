@@ -52,22 +52,18 @@ namespace Enemy.EnemyFiniteStateMachine
         public void SetEnemyIdle()
         {
             ChangeState(_enemyIdle);
-            print("enemy idle");
         }
         public void SetEnemyChase()
         {
             ChangeState(_enemyChase);
-            print("enemy chase");
         }
         public void SetEnemyAttack()
         {
             ChangeState(_enemyAttack);
-            print("enemy attack");
         }
         public void SetEnemyDeath()
         {
             ChangeState(_enemyDeath);
-            print("enemy death");
         }
         
         #region Getters

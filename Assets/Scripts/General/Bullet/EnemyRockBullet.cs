@@ -1,7 +1,8 @@
-﻿using ScriptableObjects;
+﻿using Interfaces;
+using ScriptableObjects;
 using System;
 using UnityEngine;
-
+using Player;
 namespace General.Bullet
 {
     
@@ -26,6 +27,7 @@ namespace General.Bullet
             transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Speed * Time.deltaTime);
             if (transform.position == _targetPosition)
             {
+                
                 Destroy(gameObject);
                 IsDestroyed = true;
             }
@@ -34,7 +36,10 @@ namespace General.Bullet
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                print("player hit");
+                if (other.transform.root.TryGetComponent(out IHittable player))
+                {
+                    player.GetHit(Damage, gameObject);
+                }
                 Destroy(gameObject);
                 IsDestroyed = true;
             }
