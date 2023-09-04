@@ -26,8 +26,8 @@ namespace ScriptableObjects
         public float AttackCooldown => attackCooldown;
         public GameObject BulletPrefab => bulletPrefab;
         
-        public UnityAction onHit;
-        public UnityAction onDeath;
+        public UnityEvent onHit;
+        public UnityEvent onDeath;
         
     }
 }

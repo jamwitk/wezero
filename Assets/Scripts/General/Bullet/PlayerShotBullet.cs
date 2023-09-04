@@ -28,10 +28,10 @@ namespace General.Bullet
             if (other.gameObject.CompareTag("Enemy"))
             {
                 
-                // if (other.transform.root.TryGetComponent(out IHittable target))
-                // {
-                //     target.GetHit(Damage, gameObject);
-                // }
+                if (other.transform.root.TryGetComponent(out IHittable target))
+                {
+                    target.GetHit(Damage, gameObject);
+                }
                 Destroy(gameObject);
                 IsDestroyed = true;
             }

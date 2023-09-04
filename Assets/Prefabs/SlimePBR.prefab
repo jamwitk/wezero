@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4114623480867794}
   m_Layer: 0
   m_Name: EyeBall
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4510176718482566}
   m_Layer: 0
   m_Name: BottomEyeCover
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4503789465906966}
   m_Layer: 0
   m_Name: Spine01
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4065624273618060}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 4240697694467668}
   m_Layer: 0
   m_Name: Crown
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 4795350722333334}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 4759525489219708}
   m_Layer: 0
   m_Name: Side_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,9 +233,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4358697761044548}
   - component: {fileID: 137218116663036162}
+  - component: {fileID: 709640595780090659}
   m_Layer: 0
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,6 +319,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.3588662, y: 0.1749603, z: 0.000000059604645}
     m_Extent: {x: 0.62954795, y: 0.6683546, z: 0.4895594}
   m_DirtyAABB: 0
+--- !u!65 &709640595780090659
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592125234692788}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0120875, y: 1.0575408, z: 0.9070369}
+  m_Center: {x: -0.0075071454, y: -0.011039317, z: 0.461621}
 --- !u!1 &1609119223618932
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +351,7 @@ GameObject:
   - component: {fileID: 4666598129497682}
   m_Layer: 0
   m_Name: UpperEyeCover
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -360,7 +382,7 @@ GameObject:
   - component: {fileID: 4451561462174574}
   m_Layer: 0
   m_Name: Side_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,7 +413,7 @@ GameObject:
   - component: {fileID: 4323091512933832}
   m_Layer: 0
   m_Name: EyeCTRL
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -425,6 +447,8 @@ GameObject:
   - component: {fileID: 4047972025199878}
   - component: {fileID: 95457531584545886}
   - component: {fileID: 4152050858046025185}
+  - component: {fileID: 2186375007684129525}
+  - component: {fileID: 7240796717013291745}
   m_Layer: 0
   m_Name: SlimePBR
   m_TagString: Enemy
@@ -484,6 +508,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 0b38f3d69704b50429ca5637da9c8766, type: 2}
   bulletStats: {fileID: 11400000, guid: e9cec785d43b69540a4c6ea2d3caedfc, type: 2}
-  animator: {fileID: 0}
+  enemyHealth: {fileID: 7240796717013291745}
+  animator: {fileID: 95457531584545886}
   playerTransform: {fileID: 0}
   canShoot: 1
+--- !u!114 &2186375007684129525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931298151966786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161dc35a0b9b41dca140a316d7c6ae1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7240796717013291745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931298151966786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1358bb9c0f9784a8464dfc09d8d193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0

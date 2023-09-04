@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70947c7ac4c64f619d8e898d1da23037, type: 3}
   m_Name: Player_Bullet
   m_EditorClassIdentifier: 
-  Damage: 5
+  Damage: 10
   Speed: 5
-  Range: 0
+  Range: 5
   TimeToLive: 10

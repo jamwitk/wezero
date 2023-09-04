@@ -34,7 +34,6 @@ namespace Player.FiniteStateMachine.States
         }
         public void Attack()
         {
-            var bullet = _player.GetBullet();
             if (_player.canShoot)
             {
                 _player.canShoot = false;

@@ -23,7 +23,7 @@ namespace Enemy.EnemyFiniteStateMachine
         private IEnemyState _currentState;
         [SerializeField] private EnemyStats enemyStats;
         [SerializeField] private BulletStats bulletStats;
-        
+        [SerializeField] private EnemyHealth enemyHealth;
         public Animator animator;
         public Transform playerTransform;
         public bool canShoot = true;
@@ -36,6 +36,8 @@ namespace Enemy.EnemyFiniteStateMachine
         {
             playerTransform = player;
             animator = GetComponent<Animator>();
+            enemyHealth = GetComponent<EnemyHealth>();
+            enemyHealth.Initialize(enemyStats);
         }
         
         private void Update()

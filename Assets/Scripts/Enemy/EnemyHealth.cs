@@ -2,31 +2,32 @@ using General;
 using Interfaces;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 namespace Enemy
 {
     public class EnemyHealth : MonoBehaviour, IHittable
     {
-        private int _currentHealth;
-        private EnemyStats _playerStats;
+        public  int currentHealth;
+        [FormerlySerializedAs("_enemyStats")]
+        public  EnemyStats enemyStats;
         public void GetHit(int damage, GameObject sender)
         {
-            _currentHealth -= damage;
-            if (_currentHealth <= 0)
+            currentHealth -= damage;
+            if (currentHealth <= 0)
             {
-                print("player death");
-                _playerStats.onDeath?.Invoke();
+                enemyStats.onDeath?.Invoke();
             }
             else
             {
-                _playerStats.onHit?.Invoke();
-                print("player hit "+_currentHealth+" health left");
+                enemyStats.onHit?.Invoke();
 
             }
         }
         public void Initialize(EnemyStats myStats)
         {
-            _playerStats = myStats;
-            _currentHealth = (int)_playerStats.Health;
+            enemyStats = myStats;
+            currentHealth = enemyStats.Health;
         }
     }
 }

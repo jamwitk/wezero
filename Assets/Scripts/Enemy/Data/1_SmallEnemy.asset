@@ -21,3 +21,9 @@ MonoBehaviour:
   deathTime: 5
   attackCooldown: 0.833
   bulletPrefab: {fileID: 8904855502906749434, guid: a427276a7806c9845a60c1fd6bf50113, type: 3}
+  onHit:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []

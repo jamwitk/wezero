@@ -20,7 +20,7 @@ namespace General
             else
             {
                 _playerStats.onHit?.Invoke();
-                print("player hit "+_currentHealth+" health left");
+                print("player hit "+_currentHealth+" health left"+" from "+sender.name);
 
             }
         }

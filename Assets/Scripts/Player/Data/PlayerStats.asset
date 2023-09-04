@@ -15,11 +15,11 @@ MonoBehaviour:
   speed: 5
   health: 100
   damage: 10
-  attackSpeed: 0
+  attackSpeed: 1
   criticalChance: 0
   criticalDamage: 0
-  attackCooldown: 2
-  bulletPrefab: {fileID: 8904855502906749434, guid: a427276a7806c9845a60c1fd6bf50113, type: 3}
+  attackCooldown: 0.3
+  bulletPrefab: {fileID: 8904855502906749434, guid: 1df5980ced316fa42b77dc9368034c3e, type: 3}
   onDeath:
     m_PersistentCalls:
       m_Calls: []
