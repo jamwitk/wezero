@@ -1,4 +1,5 @@
 ﻿using Player;
+using ScriptableObjects.Events;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,17 @@ namespace Enemy.EnemyFiniteStateMachine
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private Transform playerTransform;
-        private void Start()
+        [SerializeField] private GameEvents gameEvents;
+
+        private void OnEnable()
         {
-            InitEnemies();
+            gameEvents.onGameStart.AddListener(InitEnemies);
         }
+        private void OnDisable()
+        {
+            gameEvents.onGameStart.RemoveListener(InitEnemies);
+        }
+        
         private void InitEnemies()
         {
             foreach (var spawnPoint in spawnPoints)

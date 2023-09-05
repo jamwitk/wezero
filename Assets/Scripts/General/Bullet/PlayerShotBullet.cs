@@ -7,17 +7,25 @@ namespace General.Bullet
     {
         private void Update()
         {
-            if (!IsInitialized) return;
-            if (IsDestroyed) return;
-            if (TimeToLiveTimer >= TimeToLive)
+            if(TargetTransform)
             {
-                Destroy(gameObject);
-                IsDestroyed = true;
-                return;
+                if (!IsInitialized) return;
+                if (IsDestroyed) return;
+                if (TimeToLiveTimer >= TimeToLive)
+                {
+                    Destroy(gameObject);
+                    IsDestroyed = true;
+                    return;
+                }
+                TimeToLiveTimer += Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, TargetTransform.position, Speed * Time.deltaTime);
+                if (transform.position == TargetTransform.position)
+                {
+                    Destroy(gameObject);
+                    IsDestroyed = true;
+                }
             }
-            TimeToLiveTimer += Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, TargetTransform.position, Speed * Time.deltaTime);
-            if (transform.position == TargetTransform.position)
+            else
             {
                 Destroy(gameObject);
                 IsDestroyed = true;
@@ -27,7 +35,6 @@ namespace General.Bullet
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                
                 if (other.transform.root.TryGetComponent(out IHittable target))
                 {
                     target.GetHit(Damage, gameObject);

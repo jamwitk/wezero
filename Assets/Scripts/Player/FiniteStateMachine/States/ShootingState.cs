@@ -27,12 +27,19 @@ namespace Player.FiniteStateMachine.States
                     return;
                 }
             }
-            _player.transform.LookAt(_target);
-            _player.transform.rotation = Quaternion.Euler(0, _player.transform.rotation.eulerAngles.y, 0);
-            //TODO: shoot
+            else
+            {
+                _player.transform.LookAt(_target);
+                _player.transform.rotation = Quaternion.Euler(0, _player.transform.rotation.eulerAngles.y, 0);
+            }
+            if(_player.joystick.IsTouching())
+            {
+                _player.SetRunningState();
+                return;
+            }
             Attack();
         }
-        public void Attack()
+        private void Attack()
         {
             if (_player.canShoot)
             {

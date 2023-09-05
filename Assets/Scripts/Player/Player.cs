@@ -16,9 +16,9 @@ namespace Player
             {
                 _playerHealth = GetComponent<Health>();
                 _playerHealth.Initialize(stats);
-                stats.onDeath.AddListener(OnDeath);
-                stats.onHit.AddListener(OnHit);
             }
+            stats.onDeath.AddListener(OnDeath);
+            stats.onHit.AddListener(OnHit);
         }
         private void OnEnable()
         {
