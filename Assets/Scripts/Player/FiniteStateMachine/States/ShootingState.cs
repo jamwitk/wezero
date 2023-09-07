@@ -8,11 +8,13 @@ namespace Player.FiniteStateMachine.States
     {
         private PlayerFiniteStateMachine _player;
         private Transform _target;
+        private float _animationDefaultSpeed = 1f;
+        private float _animationDefaultTime = 2.2f;
         
         public void Enter(PlayerFiniteStateMachine playerFiniteStateMachine)
         {
             _player = playerFiniteStateMachine;
-            playerFiniteStateMachine.animator.SetTrigger(AnimatorStrings.Idle);
+            CalculateAnimationSpeed();
             _target = _player.GetEnemyTarget();
         }
 
@@ -51,11 +53,19 @@ namespace Player.FiniteStateMachine.States
         {
             var bullet = _player.GetBullet();
             bullet.SetActive(true);
+            _player.animator.SetTrigger(AnimatorStrings.Shooting);
             yield return new WaitForSeconds(_player.GetAttackCooldown());
             _player.canShoot = true;
         }
+        private void CalculateAnimationSpeed()
+        {
+            _animationDefaultSpeed = _player.animator.speed;
+            var speed = _animationDefaultTime / _player.GetAttackCooldown();
+            _player.animator.speed *= speed;
+        }
         public void Exit()
         {
+            _player.animator.speed = _animationDefaultSpeed;
         }
     }
 }

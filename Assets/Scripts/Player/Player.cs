@@ -8,17 +8,17 @@ namespace Player
 {
     public class Player : MonoBehaviour
     {
-        public PlayerStats stats;
+        public PlayerStats playerStats;
         private Health _playerHealth;
         private void InitializePlayer()
         {
             if (!_playerHealth)
             {
                 _playerHealth = GetComponent<Health>();
-                _playerHealth.Initialize(stats);
+                _playerHealth.Initialize(playerStats);
             }
-            stats.onDeath.AddListener(OnDeath);
-            stats.onHit.AddListener(OnHit);
+            playerStats.onDeath.AddListener(OnDeath);
+            playerStats.onHit.AddListener(OnHit);
         }
         private void OnEnable()
         {
@@ -26,16 +26,17 @@ namespace Player
         }
         private void OnDisable()
         {
-            stats.onDeath.RemoveListener(OnDeath);
-            stats.onHit.RemoveListener(OnHit);
+            playerStats.onDeath.RemoveListener(OnDeath);
+            playerStats.onHit.RemoveListener(OnHit);
         }
         public GameObject GetBulletPrefab()
         {
-            return stats.bulletPrefab;
+            return playerStats.bulletPrefab;
         }
         private void OnHit()
         {
             print("player hit");
+            //feedback
         }
         private void OnDeath()
         {

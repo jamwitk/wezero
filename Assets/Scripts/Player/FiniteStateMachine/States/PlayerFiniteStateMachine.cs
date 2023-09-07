@@ -24,10 +24,8 @@ namespace Player.FiniteStateMachine
         public BulletStats bulletStats;
         private Player _player;
         [Space(10)]
-        [Header("Player Movement")]
-        public float speed = 5f;
-        
         [Header("Player Shooting")]
+        public AnimationClip shootingAnimation;
         public bool canShoot = true;
         private Transform _enemyTarget;
         private IPlayerState _currentState;
@@ -89,7 +87,11 @@ namespace Player.FiniteStateMachine
         #endregion
         public float GetAttackCooldown()
         {
-            return _player.stats.AttackCooldown;
+            return _player.playerStats.AttackCooldown;
+        }
+        public float GetPlayerSpeed()
+        {
+            return _player.playerStats.Speed;
         }
     }
 }

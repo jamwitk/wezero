@@ -12,6 +12,7 @@ namespace Enemy.EnemyFiniteStateMachine
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private Transform playerTransform;
         [SerializeField] private GameEvents gameEvents;
+        
 
         private void OnEnable()
         {
